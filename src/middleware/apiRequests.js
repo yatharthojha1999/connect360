@@ -4,11 +4,11 @@ module.exports = function makeMiddleWare({
     return async function middleWare(req, res) {
         const apiRequestMiddleware = {
             body: req.body,
-            headers: req.header,
+            headers: req.headers,
             params: req.params,
         }
 
-        // calling controller from after passing all required validations
+        // calling controller after passing all required validations
         try {
             await controller(apiRequestMiddleware);
         } catch (error) {

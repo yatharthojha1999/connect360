@@ -14,5 +14,8 @@ module.exports = function makeUserSignUpAction({
                 email,
                 password,
             });
+
+        console.info({userSignUpResult});
+        process.exit(0);
     }
 }
