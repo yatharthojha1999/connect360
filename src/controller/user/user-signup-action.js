@@ -7,15 +7,12 @@ module.exports = function makeUserSignUpAction({
         const email = apiRequestMiddleware.body.email;
         const password = apiRequestMiddleware.body.password;
         const linkname = apiRequestMiddleware.headers.linkname;
-        const userSignUpResult = await userSignUp({
+        return await userSignUp({
                 linkname,
                 firstName,
                 lastName,
                 email,
                 password,
             });
-
-        console.info({userSignUpResult});
-        process.exit(0);
     }
 }

@@ -5,7 +5,7 @@ module.exports = function makeUserLogInAction({
         const email = apiRequestMiddleware.body.email;
         const password = apiRequestMiddleware.body.password;
         const linkname = apiRequestMiddleware.headers.linkname;
-        const userLogInResult = await userLogIn({
+        return await userLogIn({
                 linkname,
                 email,
                 password,

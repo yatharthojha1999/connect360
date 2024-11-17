@@ -1,6 +1,9 @@
 const Joi = require('joi');
 const {usersDb} = require('../../data-access');
-const {createHashValue} = require('../../shared/helper-functions');
+const {
+    createHashValue,
+    compareHashValue,
+} = require('../../shared/helper-functions');
 const {botUserId} = require('../../config/docker');
 
 const makeUserSignUp = require('./user-signup');
@@ -15,6 +18,7 @@ const makeUserLogIn = require('./user-login');
 const userLogIn = makeUserLogIn({
     Joi,
     usersDb,
+    compareHashValue,
 });
 
 module.exports = {
