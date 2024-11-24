@@ -9,8 +9,8 @@ function init() {
 
 function initUserRoutes() {
     // get active users list.
-    router.get('/v1/active-users', middleWare({
-        controller: controller.userController,
+    router.get('/v1/user/active-users', middleWare({
+        controller: controller.userController.getActiveUsersAction,
     }));
     //use this route on user login for specific link.
     router.post('/v1/user/login', middleWare({
@@ -22,7 +22,7 @@ function initUserRoutes() {
     }));
     // add user route.
     router.post('/v1/user/add-user', middleWare({
-        controller: controller.userController,
+        controller: controller.userController.addNewUserAction,
     }));
     // delete existing user route.
     router.delete('/v1/user/delete-user/:userId', middleWare({

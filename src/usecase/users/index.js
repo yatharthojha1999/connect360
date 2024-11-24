@@ -21,7 +21,22 @@ const userLogIn = makeUserLogIn({
     compareHashValue,
 });
 
+const makeGetActiveUsersAction = require('./active-users');
+const activeUsers = makeGetActiveUsersAction({
+    Joi,
+    usersDb,
+});
+
+const makeAddNewUser = require('./add-new-user');
+const addNewUser = makeAddNewUser({
+    Joi,
+    usersDb,
+    createHashValue,
+});
+
 module.exports = {
     userSignUp,
     userLogIn,
+    activeUsers,
+    addNewUser,
 }

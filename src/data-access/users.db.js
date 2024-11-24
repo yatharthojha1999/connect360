@@ -5,6 +5,7 @@ function makeUsersDb({mysql}) {
     return Object.freeze({
         create,
         getUserDetailsByEmail,
+        getAllUserDetails,
     });
 
     async function create({
@@ -37,6 +38,17 @@ function makeUsersDb({mysql}) {
           values,
         );
         return result[0];
+    }
+
+    async function getAllUserDetails({linkname, isBlocked, columnsToGet = ['*']}) {
+        const whereCondition = `linkname = ? AND isBlocked = ?`;
+        const query = `select ${columnsToGet.join(',')} from ${DATABASE_NAME}.${TABLE_NAME} where ${whereCondition}`;
+        const values = [linkname, isBlocked];
+        const [result] = await mysql.execute(
+          query,
+          values,
+        );
+        return result;
     }
 }
 

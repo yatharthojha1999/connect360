@@ -41,6 +41,8 @@ module.exports = function makeUserSignUp({
             linkname, firstName, lastName, email, password, accessToken, isBlocked: false,
             userType: 1, signUpPlatform: 'system', createdBy: botUserId, createdAt,
         });
+
+        // publish on email service for sending welcome message to user for joining connect360.
     }
 
     function validateInputs({

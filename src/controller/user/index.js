@@ -11,7 +11,19 @@ const userLogInAction = makeUserLogInAction({
     userLogIn: useCases.usersUsecase.userLogIn,
 });
 
+const makeGetActiveUsersAction = require('./active-users-action');
+const getActiveUsersAction = makeGetActiveUsersAction({
+    activeUsers: useCases.usersUsecase.activeUsers,
+});
+
+const makeAddNewUserAction = require('./add-new-user-action');
+const addNewUserAction = makeAddNewUserAction({
+    addNewUser: useCases.usersUsecase.addNewUser,
+});
+
 module.exports = {
     userSignUpAction,
     userLogInAction,
+    getActiveUsersAction,
+    addNewUserAction,
 }
