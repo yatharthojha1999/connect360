@@ -30,7 +30,7 @@ function initUserRoutes() {
     }));
     // get user-by-id route.
     router.get('/v1/user/:userId', middleWare({
-        controller: controller.userController,
+        controller: controller.userController.getUserDetailsByIdAction,
     }));
     // get user-by-ids route.
     router.get('/v1/user/userIds', middleWare({

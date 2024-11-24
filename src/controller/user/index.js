@@ -26,10 +26,16 @@ const deactivateUserAction = makeDeactivateUserAction({
     deactivateUser: useCases.usersUsecase.deactivateUser,
 });
 
+const makeGetUserDetailsByIdAction = require('./get-user-detail-by-id-action');
+const getUserDetailsByIdAction = makeGetUserDetailsByIdAction({
+    getUserDetailsById: useCases.usersUsecase.getUserDetailsById,
+});
+
 module.exports = {
     userSignUpAction,
     userLogInAction,
     getActiveUsersAction,
     addNewUserAction,
     deactivateUserAction,
+    getUserDetailsByIdAction,
 }

@@ -40,10 +40,17 @@ const deactivateUser = makeDeactivateUser({
     usersDb,
 });
 
+const makeGetUserDetailsById = require('./get-user-detail-by-id');
+const getUserDetailsById = makeGetUserDetailsById({
+    Joi,
+    usersDb,
+});
+
 module.exports = {
     userSignUp,
     userLogIn,
     activeUsers,
     addNewUser,
     deactivateUser,
+    getUserDetailsById,
 }
