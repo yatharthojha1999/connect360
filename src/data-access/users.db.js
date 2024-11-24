@@ -6,6 +6,8 @@ function makeUsersDb({mysql}) {
         create,
         getUserDetailsByEmail,
         getAllUserDetails,
+        updateUserDetails,
+        getUserDetailsByIds,
     });
 
     async function create({
@@ -44,6 +46,29 @@ function makeUsersDb({mysql}) {
         const whereCondition = `linkname = ? AND isBlocked = ?`;
         const query = `select ${columnsToGet.join(',')} from ${DATABASE_NAME}.${TABLE_NAME} where ${whereCondition}`;
         const values = [linkname, isBlocked];
+        const [result] = await mysql.execute(
+          query,
+          values,
+        );
+        return result;
+    }
+
+    async function updateUserDetails({linkname, userId}) {
+        const whereCondition = `linkname = ? AND id = ?`;
+        const setCondition = `isBlocked = ?`;
+        const values = [true, linkname, userId];
+        const query = `UPDATE ${DATABASE_NAME}.${TABLE_NAME} SET ${setCondition} WHERE ${whereCondition}`;
+        const [result] = await mysql.execute(
+            query,
+            values,
+        );
+        return result[0];
+    }
+    
+    async function getUserDetailsByIds({linkname, ids, columnsToGet = ['*']}) {
+        const whereCondition = `linkname = ? AND id IN (?)`;
+        const query = `select ${columnsToGet.join(',')} from ${DATABASE_NAME}.${TABLE_NAME} where ${whereCondition}`;
+        const values = [linkname, ...ids];
         const [result] = await mysql.execute(
           query,
           values,

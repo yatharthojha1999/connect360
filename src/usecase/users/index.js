@@ -34,9 +34,16 @@ const addNewUser = makeAddNewUser({
     createHashValue,
 });
 
+const makeDeactivateUser = require('./deactivate-user');
+const deactivateUser = makeDeactivateUser({
+    Joi,
+    usersDb,
+});
+
 module.exports = {
     userSignUp,
     userLogIn,
     activeUsers,
     addNewUser,
+    deactivateUser,
 }

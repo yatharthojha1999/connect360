@@ -25,8 +25,8 @@ function initUserRoutes() {
         controller: controller.userController.addNewUserAction,
     }));
     // delete existing user route.
-    router.delete('/v1/user/delete-user/:userId', middleWare({
-        controller: controller.userController,
+    router.patch('/v1/user/deactivate-user/:userId', middleWare({
+        controller: controller.userController.deactivateUserAction,
     }));
     // get user-by-id route.
     router.get('/v1/user/:userId', middleWare({

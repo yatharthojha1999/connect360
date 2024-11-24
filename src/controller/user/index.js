@@ -21,9 +21,15 @@ const addNewUserAction = makeAddNewUserAction({
     addNewUser: useCases.usersUsecase.addNewUser,
 });
 
+const makeDeactivateUserAction = require('./deactivate-user-action');
+const deactivateUserAction = makeDeactivateUserAction({
+    deactivateUser: useCases.usersUsecase.deactivateUser,
+});
+
 module.exports = {
     userSignUpAction,
     userLogInAction,
     getActiveUsersAction,
     addNewUserAction,
+    deactivateUserAction,
 }
