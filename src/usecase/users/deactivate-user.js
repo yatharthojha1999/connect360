@@ -10,7 +10,6 @@ module.exports = function makeDeactivateUser({
         const existingUserDetails = await usersDb.getUserDetailsByIds({
             linkname, ids: [userId], columnsToGet: ['isBlocked'],
         });
-        console.log(existingUserDetails);
         if (existingUserDetails && existingUserDetails.length && existingUserDetails[0].isBlocked) {
             throw new Error('You can not deactivate already deactivated user.');
         }

@@ -52,6 +52,12 @@ const getUserDetailsByIds = makeGetUserDetailsByIds({
     usersDb,
 });
 
+const makeGetDeactiveUserDetails = require('./get-deactive-user-details');
+const getDeactiveUserDetails = makeGetDeactiveUserDetails({
+    Joi,
+    usersDb,
+});
+
 module.exports = {
     userSignUp,
     userLogIn,
@@ -60,4 +66,5 @@ module.exports = {
     deactivateUser,
     getUserDetailsById,
     getUserDetailsByIds,
+    getDeactiveUserDetails,
 }

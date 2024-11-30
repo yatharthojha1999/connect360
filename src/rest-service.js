@@ -34,10 +34,14 @@ function initUserRoutes() {
     }));
     // get deactive users list.
     router.get('/v1/user/deactive-users', middleWare({
-        controller: controller.userController,
+        controller: controller.userController.getDeactiveUserDetailsAction,
     }));
     // get user-by-id route.
     router.get('/v1/user/:userId', middleWare({
+        controller: controller.userController.getUserDetailsByIdAction,
+    }));
+    // update password for user route.
+    router.get('/v1/user/:userId/update-password', middleWare({
         controller: controller.userController.getUserDetailsByIdAction,
     }));
 }

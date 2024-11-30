@@ -8,6 +8,7 @@ function makeUsersDb({mysql}) {
         getAllUserDetails,
         updateUserDetails,
         getUserDetailsByIds,
+        getDeactiveUserDetails,
     });
 
     async function create({
@@ -22,8 +23,6 @@ function makeUsersDb({mysql}) {
         ];
         const valuesToBeInserted = `?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?`;
         const query = `INSERT INTO ${DATABASE_NAME}.${TABLE_NAME} (${tableColumns}) values (${valuesToBeInserted})`;
-        console.info({query});
-        console.info({values});
         const [result] = await mysql.execute(
           query,
           values,
@@ -74,6 +73,17 @@ function makeUsersDb({mysql}) {
           query,
           values,
         );
+        return result;
+    }
+
+    async function getDeactiveUserDetails({linkname, columnsToGet = ['*']}) {
+        const whereCondition = `linkname = ? and isBlocked = ?`;
+        const values = [linkname, true];
+        const query = `select ${columnsToGet} from ${DATABASE_NAME}.${TABLE_NAME} where ${whereCondition}`;
+        const [result] = await mysql.execute(
+            query,
+            values,
+          );
         return result;
     }
 }
