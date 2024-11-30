@@ -1,5 +1,9 @@
 const useCases = require('../../usecase');
 
+const makeGetUserDetailsByIdsAction = require('./get-user-details-by-ids-action');
+const getUserDetailsByIdsAction = makeGetUserDetailsByIdsAction({
+    getUserDetailsByIds: useCases.usersUsecase.getUserDetailsByIds,
+});
 
 const makeUserSignUpAction = require('./user-signup-action');
 const userSignUpAction = makeUserSignUpAction({
@@ -38,4 +42,5 @@ module.exports = {
     addNewUserAction,
     deactivateUserAction,
     getUserDetailsByIdAction,
+    getUserDetailsByIdsAction,
 }

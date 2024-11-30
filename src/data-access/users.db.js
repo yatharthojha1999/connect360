@@ -66,7 +66,8 @@ function makeUsersDb({mysql}) {
     }
     
     async function getUserDetailsByIds({linkname, ids, columnsToGet = ['*']}) {
-        const whereCondition = `linkname = ? AND id IN (?)`;
+        const placeholders = ids.map(() => '?').join(',');
+        const whereCondition = `linkname = ? AND id IN (${placeholders})`;
         const query = `select ${columnsToGet.join(',')} from ${DATABASE_NAME}.${TABLE_NAME} where ${whereCondition}`;
         const values = [linkname, ...ids];
         const [result] = await mysql.execute(

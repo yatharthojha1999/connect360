@@ -8,6 +8,10 @@ function init() {
 }
 
 function initUserRoutes() {
+    // get user-by-ids route.
+    router.get('/v1/users/get-user-by-ids', middleWare({
+        controller: controller.userController.getUserDetailsByIdsAction,
+    }));
     // get active users list.
     router.get('/v1/user/active-users', middleWare({
         controller: controller.userController.getActiveUsersAction,
@@ -28,17 +32,13 @@ function initUserRoutes() {
     router.patch('/v1/user/deactivate-user/:userId', middleWare({
         controller: controller.userController.deactivateUserAction,
     }));
+    // get deactive users list.
+    router.get('/v1/user/deactive-users', middleWare({
+        controller: controller.userController,
+    }));
     // get user-by-id route.
     router.get('/v1/user/:userId', middleWare({
         controller: controller.userController.getUserDetailsByIdAction,
-    }));
-    // get user-by-ids route.
-    router.get('/v1/user/userIds', middleWare({
-        controller: controller.userController,
-    }));
-    // get deactive users list.
-    router.get('/v1/deactive-users', middleWare({
-        controller: controller.userController,
     }));
 }
 

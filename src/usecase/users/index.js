@@ -46,6 +46,12 @@ const getUserDetailsById = makeGetUserDetailsById({
     usersDb,
 });
 
+const makeGetUserDetailsByIds = require('./get-user-details-by-ids');
+const getUserDetailsByIds = makeGetUserDetailsByIds({
+    Joi,
+    usersDb,
+});
+
 module.exports = {
     userSignUp,
     userLogIn,
@@ -53,4 +59,5 @@ module.exports = {
     addNewUser,
     deactivateUser,
     getUserDetailsById,
+    getUserDetailsByIds,
 }
