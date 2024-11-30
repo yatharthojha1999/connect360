@@ -3,6 +3,7 @@ module.exports = function makeDeactivateUser({
     usersDb,
 }) {
     return async function deactivateUser({linkname, userId}) {
+        console.info(`deactivateUser usecase called`, {linkname, userId});
         // validate input data.
         validateInput({linkname, userId});
 

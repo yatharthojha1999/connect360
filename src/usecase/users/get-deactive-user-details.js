@@ -3,6 +3,7 @@ module.exports = function makeGetDeactiveUserDetails({
     usersDb,
 }) {
     return async function getDeactiveUserDetails({linkname, userId}) {
+        console.info(`getDeactiveUserDetails usecase called`, {linkname, userId});
         validateInput({linkname, userId});
 
         // get all deactivate users.

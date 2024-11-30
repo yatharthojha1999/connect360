@@ -7,7 +7,7 @@ module.exports = function makeAddNewUser({
         linkname, firstName, lastName, email, userType, signUpPlatform, userId,
     }) {
 
-        console.info({
+        console.info('addNewUser  usecase called' , {
             linkname, firstName, lastName, email, userType, signUpPlatform, userId,
         });
         // validate input data, make email firstName lastName and userType as required.

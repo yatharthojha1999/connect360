@@ -8,7 +8,7 @@ module.exports = function makeUserLogIn({
         email,
         password,
     }) {
-        console.info({
+        console.info(`userLogIn usecase called`, {
             linkname,
             email,
         });

@@ -3,6 +3,7 @@ module.exports = function makeGetUserDetailsById({
     usersDb,
 }) {
     return async function getUserDetailsById({linkname, userId}) {
+        console.info(`getUserDetailsById usecase called`, {linkname, userId});
         validateInput({linkname, userId});
 
         const userData = await usersDb.getUserDetailsByIds({
