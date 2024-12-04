@@ -9,6 +9,7 @@ function makeUsersDb({mysql}) {
         updateUserDetails,
         getUserDetailsByIds,
         getDeactiveUserDetails,
+        getUserDetailsById,
     });
 
     async function create({
@@ -85,6 +86,17 @@ function makeUsersDb({mysql}) {
             values,
           );
         return result;
+    }
+
+    async function getUserDetailsById({linkname, id, columnsToGet = ['*']}) {
+        const whereCondition = `linkname = ? and id = ?`;
+        const values = [linkname, id];
+        const query = `select ${columnsToGet} from ${DATABASE_NAME}.${TABLE_NAME} where ${whereCondition}`;
+        const [result] = await mysql.execute(
+            query,
+            values,
+          );
+        return result[0];
     }
 }
 

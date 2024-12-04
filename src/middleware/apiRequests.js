@@ -11,7 +11,8 @@ module.exports = function makeMiddleWare({
 
         // calling controller after passing all required validations
         try {
-            return await controller(apiRequestMiddleware);
+            const data = await controller(apiRequestMiddleware);
+            res.send(data)
         } catch (error) {
             console.info({error});
         }

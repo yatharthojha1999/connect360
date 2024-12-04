@@ -1,10 +1,13 @@
 const Joi = require('joi');
 const {usersDb} = require('../../data-access');
+
 const {
     createHashValue,
     compareHashValue,
 } = require('../../shared/helper-functions');
 const {botUserId} = require('../../config/docker');
+
+const {preapreDataForNewUserEmail} = require('../email');
 
 const makeUserSignUp = require('./user-signup');
 const userSignUp = makeUserSignUp({
@@ -32,6 +35,7 @@ const addNewUser = makeAddNewUser({
     Joi,
     usersDb,
     createHashValue,
+    preapreDataForNewUserEmail,
 });
 
 const makeDeactivateUser = require('./deactivate-user');

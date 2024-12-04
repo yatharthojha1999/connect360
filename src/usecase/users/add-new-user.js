@@ -2,6 +2,7 @@ module.exports = function makeAddNewUser({
     Joi,
     usersDb,
     createHashValue,
+    preapreDataForNewUserEmail,
 }) {
     return async function addNewUser({
         linkname, firstName, lastName, email, userType, signUpPlatform, userId,
@@ -24,12 +25,13 @@ module.exports = function makeAddNewUser({
         createdAt = new Date().toISOString().slice(0, 19).replace('T', ' ');
 
         // if no user found create new user
-        return await usersDb.create({
-            linkname, firstName, lastName, email, password, accessToken, isBlocked: false,
+        const newlyCreatedUserId = await usersDb.create({
+            linkname, firstName, lastName, email, password, accessToken, isBlocked: true,
             userType, signUpPlatform, createdBy: userId, createdAt,
         });
 
         // after creating new user send user email notification.
+        return await preapreDataForNewUserEmail({linkname, userId, newlyCreatedUserId: newlyCreatedUserId.insertId});
     }
 
     function validateInput({
