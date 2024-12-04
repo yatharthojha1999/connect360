@@ -10,6 +10,7 @@ function makeUsersDb({mysql}) {
         getUserDetailsByIds,
         getDeactiveUserDetails,
         getUserDetailsById,
+        updateUserPasswordById,
     });
 
     async function create({
@@ -96,6 +97,18 @@ function makeUsersDb({mysql}) {
             query,
             values,
           );
+        return result[0];
+    }
+
+    async function updateUserPasswordById({linkname, userId, newPassword}) {
+        const whereCondition = `linkname = ? AND id = ?`;
+        const setCondition = `password = ?`;
+        const values = [newPassword, linkname, userId];
+        const query = `UPDATE ${DATABASE_NAME}.${TABLE_NAME} SET ${setCondition} WHERE ${whereCondition}`;
+        const [result] = await mysql.execute(
+            query,
+            values,
+        );
         return result[0];
     }
 }

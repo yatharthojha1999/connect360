@@ -40,6 +40,11 @@ const getDeactiveUserDetailsAction = makeGetDeactiveUserDetailsAction({
     getDeactiveUserDetails: useCases.usersUsecase.getDeactiveUserDetails,
 });
 
+const makeUpdateUserPasswordOnFirstLoginAction = require('./update-user-password-on-first-login');
+const updateUserPasswordOnFirstLoginAction = makeUpdateUserPasswordOnFirstLoginAction({
+    updateUserPasswordOnFirstLogin: useCases.usersUsecase.updateUserPasswordOnNewLogin,
+});
+
 module.exports = {
     userSignUpAction,
     userLogInAction,
@@ -49,4 +54,5 @@ module.exports = {
     getUserDetailsByIdAction,
     getUserDetailsByIdsAction,
     getDeactiveUserDetailsAction,
+    updateUserPasswordOnFirstLoginAction,
 }

@@ -62,6 +62,13 @@ const getDeactiveUserDetails = makeGetDeactiveUserDetails({
     usersDb,
 });
 
+const makeUpdateUserPasswordOnNewLogin = require('./update-user-password-on-new-login');
+const updateUserPasswordOnNewLogin = makeUpdateUserPasswordOnNewLogin({
+    Joi,
+    usersDb,
+    createHashValue,
+});
+
 module.exports = {
     userSignUp,
     userLogIn,
@@ -71,4 +78,5 @@ module.exports = {
     getUserDetailsById,
     getUserDetailsByIds,
     getDeactiveUserDetails,
+    updateUserPasswordOnNewLogin,
 }

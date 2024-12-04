@@ -33,12 +33,12 @@ module.exports = function makeUserSignUp({
         }
 
         // generate accessToken from password.
-        const accessToken = await createHashValue({textInput: password});
+        password = await createHashValue({textInput: password});
         createdAt = new Date().toISOString().slice(0, 19).replace('T', ' ')
 
         // dbCall for creating user.
         return await usersDb.create({
-            linkname, firstName, lastName, email, password, accessToken, isBlocked: false,
+            linkname, firstName, lastName, email, password, accessToken: password, isBlocked: false,
             userType: 1, signUpPlatform: 'system', createdBy: botUserId, createdAt,
         });
 

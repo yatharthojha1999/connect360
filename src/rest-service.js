@@ -13,36 +13,36 @@ function initUserRoutes() {
         controller: controller.userController.getUserDetailsByIdsAction,
     }));
     // get active users list.
-    router.get('/v1/user/active-users', middleWare({
+    router.get('/v1/users/active-users', middleWare({
         controller: controller.userController.getActiveUsersAction,
     }));
     //use this route on user login for specific link.
-    router.post('/v1/user/login', middleWare({
+    router.post('/v1/users/login', middleWare({
         controller: controller.userController.userLogInAction,
     }));
     // use this route for creating new link, no new user will be created on this link from here.
-    router.post('/v1/user/signup', middleWare({
+    router.post('/v1/users/signup', middleWare({
         controller: controller.userController.userSignUpAction,
     }));
     // add user route.
-    router.post('/v1/user/add-user', middleWare({
+    router.post('/v1/users/add-user', middleWare({
         controller: controller.userController.addNewUserAction,
     }));
     // delete existing user route.
-    router.patch('/v1/user/deactivate-user/:userId', middleWare({
+    router.patch('/v1/users/deactivate-user/:userId', middleWare({
         controller: controller.userController.deactivateUserAction,
     }));
     // get deactive users list.
-    router.get('/v1/user/deactive-users', middleWare({
+    router.get('/v1/users/deactive-users', middleWare({
         controller: controller.userController.getDeactiveUserDetailsAction,
     }));
     // get user-by-id route.
-    router.get('/v1/user/:userId', middleWare({
+    router.get('/v1/users/:userId', middleWare({
         controller: controller.userController.getUserDetailsByIdAction,
     }));
     // update password for user route.
-    router.get('/v1/user/:userId/update-password', middleWare({
-        controller: controller.userController.getUserDetailsByIdAction,
+    router.patch('/v1/users/:userId/update-password', middleWare({
+        controller: controller.userController.updateUserPasswordOnFirstLoginAction,
     }));
 }
 
