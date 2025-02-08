@@ -5,6 +5,7 @@ const middleWare = require('./middleware/apiRequests');
 
 function init() {
     initUserRoutes();
+    initUserPermissionRoutes();
 }
 
 function initUserRoutes() {
@@ -44,6 +45,10 @@ function initUserRoutes() {
     router.patch('/v1/users/:userId/update-password', middleWare({
         controller: controller.userController.updateUserPasswordOnFirstLoginAction,
     }));
+}
+
+function initUserPermissionRoutes() {
+    // api to check user permission on the basis of standard and admin user.
 }
 
 init();
